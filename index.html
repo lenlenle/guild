@@ -1,7 +1,7 @@
-<iframe id="video" width="100%" height="400" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
+<iframe id="video" width="100%" height="80%" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
 <select id="languages">
   <option value="en">English</option>
-  <option value="hu">Hungarian</option>
+  <option value="hu">TChinese</option>
 </select>
 <script src="static/vendor/youtube.external.subtitle/youtube.external.subtitle.js"></script>
 <script src="static/vendor/subtitles-parser/subtitles.parser.js"></script>
@@ -30,7 +30,7 @@
   };
 
   loadSRT('srt/closingshift.srt', function(subtitlesEn) {
-    loadSRT('srt/closingshift_tw.srt', function(subtitlesHu) {
+    loadSRT('srt/closingshift.srt', function(subtitlesHu) {
       var subtitles = {
         en: subtitlesEn,
         hu: subtitlesHu
