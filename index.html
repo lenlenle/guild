@@ -1,6 +1,10 @@
-<iframe id="video" width="100%" height="90%" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
-<script src="static/vendor/youtube.external.subtitle/youtube.external.subtitle.js"></script>
-<script src="static/vendor/subtitles-parser/subtitles.parser.js"></script>
+<iframe id="video" width="100%" height="70%" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
+<select id="languages">
+  <option value="en">English</option>
+  <option value="hu">繁體中文</option>
+</select>
+<script src="youtube.external.subtitle/youtube.external.subtitle.js"></script>
+<script src="subtitles-parser/subtitles.parser.js"></script>
 <script>
   var loadSRT = function(url, callback) {
     var httpRequest = new XMLHttpRequest();
@@ -25,7 +29,20 @@
     httpRequest.send(null);
   };
 
-  loadSRT('srt/closingshift_tw.srt', function(subtitles) {
-    var youtubeExternalSubtitle = new YoutubeExternalSubtitle.Subtitle(document.getElementById('video'), subtitles);
+  loadSRT('srt/closingshift.srt', function(subtitlesEn) {
+    loadSRT('srt/closingshift_zh.srt', function(subtitlesHu) {
+      var subtitles = {
+        en: subtitlesEn,
+        hu: subtitlesHu
+      };
+
+      var youtubeExternalSubtitle = new YoutubeExternalSubtitle.Subtitle(document.getElementById('video'), subtitles.en);
+
+      document.getElementById('languages').addEventListener('change', function(e) {
+        var language = this.value;
+
+        youtubeExternalSubtitle.load(subtitles[language]);
+      });
+    });
   });
 </script>
