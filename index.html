@@ -1,8 +1,4 @@
-<iframe id="video" width="100%" height="80%" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
-<select id="languages">
-  <option value="en">English</option>
-  <option value="hu">繁體中文</option>
-</select>
+<iframe id="video" width="100%" height="400" src="https://www.youtube.com/embed/NzJqU4xn8HA" frameborder="0" allowfullscreen="true"></iframe>
 <script src="static/vendor/youtube.external.subtitle/youtube.external.subtitle.js"></script>
 <script src="static/vendor/subtitles-parser/subtitles.parser.js"></script>
 <script>
@@ -29,20 +25,7 @@
     httpRequest.send(null);
   };
 
-  loadSRT('/srt/closingshift.srt', function(subtitlesEn) {
-    loadSRT('/srt/closingshift_tw.srt', function(subtitlesHu) {
-      var subtitles = {
-        en: subtitlesEn,
-        hu: subtitlesHu
-      };
-
-      var youtubeExternalSubtitle = new YoutubeExternalSubtitle.Subtitle(document.getElementById('video'), subtitles.en);
-
-      document.getElementById('languages').addEventListener('change', function(e) {
-        var language = this.value;
-
-        youtubeExternalSubtitle.load(subtitles[language]);
-      });
-    });
+  loadSRT('srt/closingshift_tw.srt', function(subtitles) {
+    var youtubeExternalSubtitle = new YoutubeExternalSubtitle.Subtitle(document.getElementById('video'), subtitles);
   });
 </script>
